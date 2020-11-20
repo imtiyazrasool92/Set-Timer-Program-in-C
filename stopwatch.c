@@ -9,8 +9,37 @@ int main(){
     scanf("%d",&hour);
     printf("Enter Min : ");
     scanf("%d",&min);
+    if(min>59){
+    while(1){
+        if(min-60>=0){
+            min -= 60;
+            hour++;
+        }
+        if(min-60<0){
+            break;
+        }
+    }
+    }
     printf("Enter Sec : ");
     scanf("%d",&sec);
+
+    if(sec>60){
+    while(1){
+        if(sec-60>=0){
+            sec -= 60;
+            min++;
+        }
+        if(min-60>=0){
+            min -= 60;
+            hour++;
+        }
+
+        if(sec-60<0&&min-60<0){
+            break;
+        }
+    }
+    }
+
     do{
         printf("%d : %d : %d\n",hour,min,sec);
         sleep(1);
@@ -21,11 +50,11 @@ int main(){
         if(sec==0){
             if(min==0&&hour!=0){
                 hour--;
-                min =+ 59;
+                min =+ 60;
             }
               if(min!=0){
                     min--;
-                    sec += 59;
+                    sec += 60;
                 }
         }
     }while(sec!=0);
